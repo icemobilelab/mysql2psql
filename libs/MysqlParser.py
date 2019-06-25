@@ -58,6 +58,7 @@ class MysqlParser():
               "--extended-insert=FALSE --default-character-set=utf8 --complete-insert %s %s > %s "\
               % (config['host'], config['user'], ('-p'+config['password'] if 'password' in config else ''),
                  ('-P'+str(config['port']) if 'port' in config else ''), db_name, ' '.join(tables), output_path)
+        print ("mysqldump_data cmd:", cmd)
         subprocess.call(cmd, shell=True)
 
     @staticmethod
@@ -65,6 +66,7 @@ class MysqlParser():
         cmd = "mysqldump -h%s -u%s %s %s --compatible=postgresql --no-data --compact %s %s > %s "\
               % (config['host'], config['user'], ('-p'+config['password'] if 'password' in config else ''),
                  ('-P'+str(config['port']) if 'port' in config else ''), db_name, ' '.join(tables), output_path)
+        print ("mysqldump_tables cmd:", cmd)
         subprocess.call(cmd, shell=True)
 
 

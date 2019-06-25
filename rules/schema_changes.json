@@ -5,6 +5,6 @@
        "hibernate_sequence": {"_WHERE_": "1=2"},
        "domain": {"_WHERE_": "1=2"},
        "schema_version": {"_WHERE_": "1=2"}
-            }
+    }
 }
 

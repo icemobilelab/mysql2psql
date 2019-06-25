@@ -15,7 +15,7 @@ PORT=5432
 HOST="127.0.0.1"
 SKIP_DB=true
 SKIP_SCHEMA=true
-SKIP_DATA=true
+SKIP_DATA=false
 SKIP_VIEWS=true
 SKIP_CONSTRAINTS=true
 for ((i=1;i<=$#;i++));

@@ -6,8 +6,11 @@ import re
 validTimeRE = re.compile(ur'\d\d:\d\d')
 
 def convertStrBoolean(value, col_attrs=None):
-    if not value or not (isinstance(value, str) or isinstance(value, int)):
+    if not value or not (isinstance(value, (str, int))):
         return False
+    # avoid the error parsing "invalid literal for int() with base 10: '\x01' "
+    if str(value) == "\x01":
+        return True
     return False if value == 0 or int(value) == 0 else True
 
 def defaultDate(value, format, defaultValue, nullable):
