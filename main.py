@@ -30,13 +30,15 @@ def migrate(config, psql_conn_params, database, tables, skip_pre_sql, log_file=N
     :return:
     """
     db_name = database
-    output_path = os.path.join(path, 'output', db_name)
+    # hardcoded for core
+    output_path = os.path.join(path, 'output', 'blp_core')
     tables_path = os.path.join(output_path, 'tables')
 
     # can trigger a race condition
     if not os.path.exists(output_path): os.mkdir(output_path, 0755)
     if not os.path.exists(tables_path): os.mkdir(tables_path, 0755)
 
+    print ("psycopg2.connect:", psql_conn_params)
     pg_conn = psycopg2.connect(**psql_conn_params)
     pg_cursor = pg_conn.cursor()
 
