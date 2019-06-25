@@ -1,3 +1,5 @@
+## Forked for migrating BLP Core with all our rules and fixes
+
 # Migrate Mysql db to Postgresql (by rules) 
 
 Migrate your current MySQL databases into Postgres in a single command.
@@ -11,13 +13,6 @@ This tool provides you the chance of migrate your local MySQL databases to Postg
 ### Mode1: Migrate a single database
     $ python main.py {db_name}
     
-### Mode2: Migrate few tables from a single database
-    $ python main.py {db_name} [{table_name1} {table_name2} ..]
-
-### Mode3: Migrate your whole MySQL schema
-    $ python main.py all-databases
-(it is recommended to use `prefix` from parameters.json, read more above)
-
 ### Toggle actions to be executed on new database in bin/migrate.sh
    SKIP_DB=true                     skip database removal and creation on target
    SKIP_SCHEMA=true                 skip schema creation on target
@@ -72,7 +67,9 @@ These are the files generated during the migration process:
 * `psql_data.sql`: INSERT INTO statements, generated from psql_schema. Raw data will be allocated under ./table folder
 
 ## Manual migration
+
 ### Mode1: Manually
+
 #### Create tables
     psql -h server -d database_name -U username < ./output/{databaase}/psql_tables.sql
 #### Insert data
