@@ -3,11 +3,14 @@
         "type": [
             {"value": "boolean", "method": "convertStrBoolean"},
             {"value": "bytea", "method": "makeItEmpty"},
+            {"value": "bigint", "method": "convertInt"},
             {"value": "TIME", "method": "makeItTime"}
         ],
         "fullType": [
-          {"value": "datetime", "method": "notNullableDatetime"},
-          {"value": "date", "method": "notNullableDate"}
+            {"value": "datetime", "method": "notNullableDatetime"},
+            {"value": "varchar(255)", "method": "convertStr"},
+            {"value": "int(11)", "method": "convertInt"},
+            {"value": "date", "method": "notNullableDate"}
         ],
         "reference": [
             {"value": "notNone", "method": "refToNullable"}

@@ -135,8 +135,10 @@ class PsqlParser():
             table_raw_rules = self._get_table_raw_dump_rules(table_name, cols_from, table_attrs['columns'])
             sql_copy_data_template = ','.join(['%s' for x in range(0, len(cols_to))]) + '\n'
             columns = '", "'.join(cols_to)
-            psql_dump.write("\copy \"%s\" (\"%s\") FROM '%s' WITH (FORMAT CSV, QUOTE '''', DELIMITER ',', NULL 'NULL');\n"
-                % (table_name_to, columns, table_filename))
+
+            if not (table_name == 'hibernate_sequence' or table_name == 'schema_version'):
+                psql_dump.write("\copy \"%s\" (\"%s\") FROM '%s' WITH (FORMAT CSV, QUOTE '''', DELIMITER ',', NULL 'NULL');\n"
+                    % (table_name_to, columns, table_filename))
 
             try:
               df = pandas.read_csv(table_temp_filename, delimiter='|', quotechar="'", na_filter=False, header=None, escapechar='\\')

@@ -83,8 +83,8 @@ SECONDS=0
 SQL="./output/${DB_NAME}/psql_data.sql"
 if [ ${SKIP_DATA} = "false" ]
 then
-  echo -en "${YELLOW}Inserting data${NC}..."
-  psql --set  ON_ERROR_STOP=on -h ${HOST} -U ${USER} -p ${PORT} -f ${SQL} -o ${ERRLOG} -d "sslmode=require dbname=${DB_NAME}" || error "Inserting data"
+  echo -en "${YELLOW}Inserting data${NC}... add sslmode=require inside -d "
+  psql --set  ON_ERROR_STOP=on -h ${HOST} -U ${USER} -p ${PORT} -f ${SQL} -o ${ERRLOG} -d "dbname=${DB_NAME}" || error "Inserting data"
 else
   echo -en "${YELLOW}Skipping inserting data${NC}..."
 fi
