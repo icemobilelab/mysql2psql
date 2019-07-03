@@ -9,6 +9,7 @@ import pandas
 from RuleHandler import RuleHandler
 from MysqlParser import MysqlParser
 import dumperAuxFuncs
+from datetime import datetime
 from decimal import Decimal
 
 REGEX_TYPE = type(re.compile(''))
@@ -119,6 +120,7 @@ class PsqlParser():
 
         for table_name, table_attrs in pg_schema['tables'].iteritems():
             print "Parsing table '%s' data...." % table_name
+            print(datetime.now().time())
             table_name_to = table_attrs if not table_attrs.get('name', {}) else table_attrs['name']
             table_filename = os.path.join(tables_path, "%s.sql" % (table_name_to))
             table_temp_filename = os.path.join(tables_path, "%s.temp.sql" % (table_name_to))
@@ -135,6 +137,8 @@ class PsqlParser():
             table_raw_rules = self._get_table_raw_dump_rules(table_name, cols_from, table_attrs['columns'])
             sql_copy_data_template = ','.join(['%s' for x in range(0, len(cols_to))]) + '\n'
             columns = '", "'.join(cols_to)
+            print "Table transformed to columns: '%s' ..." % columns
+            print(datetime.now().time())
 
             if not (table_name == 'hibernate_sequence' or table_name == 'schema_version'):
                 psql_dump.write("\copy \"%s\" (\"%s\") FROM '%s' WITH (FORMAT CSV, QUOTE '''', DELIMITER ',', NULL 'NULL');\n"

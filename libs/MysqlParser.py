@@ -27,6 +27,7 @@ class MysqlParser():
         custom_decoders[12] = through
 
         conn_params['conv'] = custom_decoders
+        print ("pymysql.connect:", conn_params)
         self.connection = pymysql.connect(**conn_params)
         self.cursor = self.connection.cursor(pymysql.cursors.SSCursor)
         self.skip_pre_sql = False
