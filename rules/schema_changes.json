@@ -1,7 +1,8 @@
 {
     "tables": {
-        "transaction": {"_WHERE_": " DATE(created_on) > '2018-09-01' "},
-        
+
+        "loyalty_identification": {"_WHERE_": " 1 = 2 "},
+
         "hibernate_sequence": {"_WHERE_": "1=2"},
         "domain": {"_WHERE_": "1=2"},
         "schema_version": {"_WHERE_": "1=2"}

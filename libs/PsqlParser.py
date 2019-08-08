@@ -140,7 +140,8 @@ class PsqlParser():
             print "Table transformed to columns: '%s' ..." % columns
             print(datetime.now().time())
 
-            if not (table_name == 'hibernate_sequence' or table_name == 'schema_version'):
+            # skip tables that should not be included
+            if not (table_name == 'loyalty_identification' or table_name == 'hibernate_sequence' or table_name == 'schema_version'):
                 psql_dump.write("\copy \"%s\" (\"%s\") FROM '%s' WITH (FORMAT CSV, QUOTE '''', DELIMITER ',', NULL 'NULL');\n"
                     % (table_name_to, columns, table_filename))
 
