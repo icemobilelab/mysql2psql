@@ -42,6 +42,8 @@ def migrate(config, psql_conn_params, database, tables, skip_pre_sql, log_file=N
     pg_conn = psycopg2.connect(**psql_conn_params)
     pg_cursor = pg_conn.cursor()
 
+    print ("output_path:", output_path)
+
     mysql_conn_params = config['mysql']
     mysql_conn_params['db'] = db_name
     mysql_parser = MysqlParser(mysql_conn_params, information_schema)
