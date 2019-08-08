@@ -141,7 +141,7 @@ class PsqlParser():
             print(datetime.now().time())
 
             # skip tables that should not be included
-            if not (table_name == 'loyalty_identification' or table_name == 'hibernate_sequence' or table_name == 'schema_version'):
+            if not (table_name == 'hibernate_sequence' or table_name == 'schema_version'):
                 psql_dump.write("\copy \"%s\" (\"%s\") FROM '%s' WITH (FORMAT CSV, QUOTE '''', DELIMITER ',', NULL 'NULL');\n"
                     % (table_name_to, columns, table_filename))
 
