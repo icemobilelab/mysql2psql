@@ -30,8 +30,10 @@ def migrate(config, psql_conn_params, database, tables, skip_pre_sql, log_file=N
     :return:
     """
     db_name = database
-    # hardcoded for core
-    output_path = os.path.join(path, 'output', 'blp_core')
+
+    # hardcoded for core - id > 7200000   id > 27800000 AND id <= 28500000
+    # 'blp_core_27800000_'+str(int(time.time()))
+    output_path = os.path.join(path, 'output', 'blp_core' )
     tables_path = os.path.join(output_path, 'tables')
 
     # can trigger a race condition
